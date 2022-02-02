@@ -63,7 +63,7 @@ $ dotnet build
 # Para iniciar o projeto
 $  dotnet run
 
-# O app irá exibir "Hello World!"
+# O app irá exibir o número de registros afetados no Banco de Dados.
 ```
 
 
