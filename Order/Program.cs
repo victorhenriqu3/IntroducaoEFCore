@@ -1,6 +1,7 @@
 ﻿using System;
 using OrderingSystem.Domain;
 using OrderingSystem.ValuesObjects;
+using System.Linq;
 
 namespace OrderingSystem
 {
@@ -9,7 +10,22 @@ namespace OrderingSystem
         static void Main(string[] args)
         {
             //inserirProduto();
-            inserirVarios();
+            //inserirVarios();
+            exibeVarios();
+        }
+
+        private static void exibeVarios()
+        {
+            using var db = new Data.ApplicationContext();
+
+            var consultaPorMetodo = db.Clientes.Where(p => p.Id > 0).OrderBy(p => p.Id).ToList();
+
+            foreach (var cliente in consultaPorMetodo)
+            {
+                Console.WriteLine($"Consultando Cliente: {cliente.Id}");
+                //db.Clientes.Find(cliente.Id);
+                db.Clientes.FirstOrDefault(p => p.Id == cliente.Id);
+            }
         }
 
         private static void inserirVarios()
